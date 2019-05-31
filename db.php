@@ -31,6 +31,34 @@
 
     });
 
+    $tabela = 'usuarios';
+
+    $schema->dropIfExists( $tabela );
+
+    // Cria a tabela produtos
+    $schema->create($tabela, function($table){
+        
+        $table->increments('id');
+        $table->string('nome', 100);
+        $table->string('email', 100);
+        $table->string('senha', 32);
+
+    });
+
+    $db->table($tabela)->insert([
+        'nome' => 'Nícolas Teixeira',
+        'email' => 'nicolasteixeira3856@outlook.com',
+        'senha' => MD5('123456')
+    ]);
+
+    $db->table($tabela)->insert([
+        'nome' => 'Maria Teixeira',
+        'email' => 'maria@outlook.com',
+        'senha' => MD5('123456')
+    ]);
+
+    $tabela = 'produtos';
+
     // Preenche a tabela
     $db->table($tabela)->insert([
         'titulo' => 'Smartphone Motorola Moto G6 32GB Dual Chip',
